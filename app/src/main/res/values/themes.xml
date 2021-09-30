@@ -1,0 +1,49 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimaryVariant">@color/green</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/green</item>
+        <item name="colorSecondaryVariant">@color/green</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="MyCustomTheme" parent="RaveAppTheme.NoActionBar">
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimaryDark">@color/green</item>
+        <item name="colorAccent">@color/green</item>
+<!--        <item name="OTPButtonStyle">@style/otpBtnStyle2</item>-->
+<!--        <item name="PayButtonStyle">@style/payBtnStyle2</item>-->
+<!--        <item name="OTPHeaderStyle">@style/otpHeaderStyle2</item>-->
+<!--        <item name="TabLayoutStyle">@style/tabLayoutStyle2</item>-->
+<!--        <item name="PinHeaderStyle">@style/pinHeaderStyle2</item>-->
+<!--        <item name="SavedCardButtonStyle">@style/svdCardsBtnStyle2</item>-->
+<!--        <item name="PaymentTileStyle">@style/newPaymentTileStyle</item>-->
+<!--        <item name="PaymentTileTextStyle">@style/newPaymentTileTextStyle</item>-->
+<!--        <item name="PaymentTileDividerStyle">@style/newPaymentTileDividerStyle</item>-->
+    </style>
+
+<!--    <style name="newPaymentTileTextStyle">-->
+<!--        <item name="android:background">@color/green</item>-->
+<!--    </style>-->
+
+<!--    <style name="newPaymentTileDividerStyle">-->
+<!--        <item name="android:background">@color/green</item>-->
+<!--    </style>-->
+
+<!--    <style name="newPaymentTileStyle">-->
+<!--        <item name="android:background">@color/green</item>-->
+<!--    </style>-->
+
+<!--    <style name="payBtnStyle2" parent="@android:style/Widget.Button">-->
+<!--        <item name="android:background">@color/green</item>-->
+<!--        <item name="android:textColor">@color/white</item>-->
+<!--    </style>-->
+
+</resources>

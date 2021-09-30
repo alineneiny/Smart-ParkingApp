@@ -1,0 +1,12 @@
+<resources>
+    <string name="week_password">Password should be at least 6 characters</string>
+    <string name="invalid_email">Please enter a valid email</string>
+    <string name="app_name">Smart Parking</string>
+    <string name="invalid_username">Please Enter your username</string>
+    <string name="invalid_names">Please Enter your name</string>
+    <string name="week_passwor">Password should be atleast 3 characters</string>
+    <string name="invalid_confirm_password">Password does not match</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="your_car_s_plate_number">Your car\'s plate number</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
