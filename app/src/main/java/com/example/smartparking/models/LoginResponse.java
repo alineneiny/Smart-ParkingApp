@@ -1,52 +1,30 @@
 package com.example.smartparking.models;
 
-import java.io.Serializable;
+public class LoginResponse {
 
-public class LoginResponse  implements Serializable {
+    private String token;
+    private User user;
+    //private String access;
 
-    private int id;
-    private String username;
-    private String first_name;
-    private String last_name;
-    private String password;
 
-    public int getId() {
-        return id;
+    public LoginResponse(String token, User user) {
+        this.token = token;
+        this.user = user;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getToken() {
+        return token;
     }
 
-    public String getUsername() {
-        return username;
+    public void setToken(String token) {
+        this.token = token;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public User getUser() {
+        return user;
     }
 
-    public String getFirst_name() {
-        return first_name;
-    }
-
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
-    }
-
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

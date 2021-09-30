@@ -20,6 +20,7 @@ import com.example.smartparking.R;
 import com.example.smartparking.models.RegisterRequest;
 import com.example.smartparking.models.RegisterResponse;
 import com.example.smartparking.services.ApiClient;
+import com.example.smartparking.storage.SharedPreferenceManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @BindView(R.id.linearLayout)
     LinearLayout linearLayout;
     Animation topAnim, bottomAnim;
+    SharedPreferenceManager sharedPreferenceManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

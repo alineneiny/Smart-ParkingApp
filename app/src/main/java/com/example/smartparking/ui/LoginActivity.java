@@ -20,6 +20,7 @@ import com.example.smartparking.R;
 import com.example.smartparking.models.LoginRequest;
 import com.example.smartparking.models.LoginResponse;
 import com.example.smartparking.services.ApiClient;
+import com.example.smartparking.storage.SharedPreferenceManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +38,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.password) EditText mPassword;
     @BindView(R.id.registerTextView) TextView mRegisterTextView;
     Animation topAnim, bottomAnim;
+    SharedPreferenceManager sharedPreferenceManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         bottomAnim= AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
         image.setAnimation(topAnim);
         linearLayout.setAnimation(bottomAnim);
+        sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
     }
     @Override
     public void onClick(View view) {
@@ -62,6 +65,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             intoUser(loginUser());
         }
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(sharedPreferenceManager.isLoggedIn()){
+            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+    }
     public LoginRequest loginUser(){
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUsername(username.getText().toString());
@@ -73,7 +85,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginResponseCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                LoginResponse loginResponse = response.body();
                 if (response.isSuccessful()){
+                    sharedPreferenceManager.saveUser(loginResponse.getUser());
                     Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
