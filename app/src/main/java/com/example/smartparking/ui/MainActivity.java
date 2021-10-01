@@ -30,8 +30,15 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -191,20 +198,18 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 convertView=layoutInflater.inflate(R.layout.row,parent,false);
 
                 TextView block=convertView.findViewById(R.id.block);
-//               TextView location= convertView.findViewById(R.id.location);
+               TextView location= convertView.findViewById(R.id.location);
                 TextView slot= convertView.findViewById(R.id.slot);
                 Button button2 =convertView.findViewById(R.id.button2);
-                TextView Locationname=convertView.findViewById(R.id.lname);
+//                TextView Locationname=convertView.findViewById(R.id.lname);
                 button2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(MainActivity.this, ReservationActivity.class));
                     }
                 });
-
-//               location.setText( "Location"+" "+imageResponseList.get(position).getLocation());
-                Locationname.setText("Location Name:"+imageResponseList.get(position).getLocation_name());
-//
+                JsonObject loc= imageResponseList.get(position).getLocation();
+                location.setText( "Location: "+" "+ loc.get("name"));
                 slot.setText("Number of Slot:"+" "+imageResponseList.get(position).getNumber_of_slots());
                 block.setText("Block Code:"+" "+imageResponseList.get(position).getBlock_code());
 

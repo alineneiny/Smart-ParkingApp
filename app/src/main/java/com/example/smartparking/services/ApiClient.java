@@ -24,9 +24,9 @@ public class ApiClient {
       return retrofit;
 
     }
-    public static ApiInterface getInterface(){
-        ApiInterface apiInterface = getRetrofit().create(ApiInterface.class);
-        return apiInterface;
+    public static BlockInterface getInterface(){
+        BlockInterface blockInterface = getRetrofit().create(BlockInterface.class);
+        return blockInterface;
     }
     public static LocationInterface getInterfac(){
         LocationInterface location = getRetrofit().create(LocationInterface.class);

@@ -3,28 +3,35 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="@color/white">
+    app:cardElevation="5dp"
+    app:cardCornerRadius="20dp"
+    android:layout_margin="2dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardMaxElevation="6dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="15dp">
 
         <TextView
-            android:id="@+id/lname"
+            android:id="@+id/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="Name"
-            android:textColorHint="@color/black"
-            android:textColor="@color/black"/>
+            android:hint="Location"
+            android:textColorHint="@color/rave_light_grey"
+            android:textColor="@color/rave_light_grey"/>
         <TextView
             android:id="@+id/block"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Block"
-            android:textColorHint="@color/black"
-            android:layout_below="@+id/lname"
+            android:layout_below="@+id/location"
             android:layout_marginTop="10dp"
-            android:textColor="@color/black"/>
+            android:textColorHint="@color/rave_light_grey"
+            android:textColor="@color/rave_light_grey"/>
 
         <TextView
             android:id="@+id/slot"
@@ -33,22 +40,23 @@
             android:layout_below="@+id/block"
             android:layout_marginTop="10dp"
             android:hint="Slot"
-            android:textColorHint="@color/black"
-            android:textColor="@color/black"/>
+            android:textColorHint="@color/rave_light_grey"
+            android:textColor="@color/rave_light_grey"/>
 
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginEnd="38dp"
-            android:layout_marginRight="38dp"
-            android:layout_marginTop="40dp"
-            android:textColorHint="@color/white"
-            android:background="#00CED1"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="21dp"
+            android:layout_marginRight="21dp"
+            android:background="@color/purple_200"
             android:text="Book Now"
-            android:textColor="@color/white"/>
+            android:textColor="@color/teal_700"
+            android:textColorHint="@color/white" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

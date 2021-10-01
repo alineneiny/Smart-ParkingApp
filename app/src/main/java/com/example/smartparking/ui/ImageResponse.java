@@ -1,9 +1,12 @@
 package com.example.smartparking.ui;
 
+import com.google.gson.JsonObject;
+
+import org.json.JSONArray;
+
 public class ImageResponse {
     private String block_code;
-   private String block_photo;
-   private String location;
+   private JsonObject location;
   private  String is_block_full;
   private String is_accessible;
     private String number_of_slots;
@@ -20,19 +23,11 @@ public class ImageResponse {
         this.block_code = block_code;
     }
 
-    public String getBlock_photo() {
-        return block_photo;
-    }
-
-    public void setBlock_photo(String block_photo) {
-        this.block_photo = block_photo;
-    }
-
-    public String getLocation() {
+    public JsonObject getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(JsonObject location) {
         this.location = location;
     }
 
