@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="@color/teal_700"
+        android:background="@drawable/custom_btn"
         android:padding="20dp">
         <ImageView
             android:id="@+id/pimage"
@@ -18,24 +18,24 @@
             android:layout_height="100dp"
             android:src="@drawable/ic_profile"
             android:layout_centerVertical="true"/>
+
         <TextView
             android:id="@+id/fullName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:layout_toRightOf="@+id/pimage"
-            android:text="Charles NDAYISABA"
-            android:textSize="20sp"
-            android:textStyle="bold"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            />
+            android:layout_toRightOf="@+id/pimage"
+            android:text="Charles NDAYISABA"
+            android:textColor="@color/purple_200"
+            android:textSize="20sp"
+            android:textStyle="bold" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/pimage"
             android:text="nc@gmail.com"
-            android:textColor="@color/white"
+            android:textColor="@color/purple_200"
             android:textSize="14sp"
             android:textStyle="bold"
             android:layout_below="@+id/fullName"
@@ -69,7 +69,7 @@
                     android:id="@+id/invoice_icon"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    app:tint="@color/white"
+                    app:tint="@color/purple_200"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_receipt" />
 
@@ -80,7 +80,7 @@
                     android:layout_below="@+id/invoice_icon"
                     android:layout_centerHorizontal="true"
                     android:text="--"
-                    android:textColor="@color/white"
+                    android:textColor="@color/purple_200"
                     android:textFontWeight="900"
                     android:textSize="20sp" />
 
@@ -88,10 +88,10 @@
                     android:id="@+id/invoice_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
                     android:layout_below="@+id/invoice_number"
                     android:layout_centerHorizontal="true"
                     android:text="Receipts"
+                    android:textColor="@color/purple_200"
                     android:textSize="12sp" />
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -113,10 +113,10 @@
                 <ImageView
                     android:id="@+id/parking_icon"
                     android:layout_width="30dp"
-                    app:tint="@color/white"
                     android:layout_height="30dp"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_car" />
+                    android:src="@drawable/ic_car"
+                    app:tint="@color/purple_200" />
 
                 <TextView
                     android:id="@+id/parking_number"
@@ -125,7 +125,7 @@
                     android:layout_below="@+id/parking_icon"
                     android:layout_centerHorizontal="true"
                     android:text="--"
-                    android:textColor="@color/white"
+                    android:textColor="@color/purple_200"
                     android:textFontWeight="900"
                     android:textSize="20sp" />
 
@@ -133,10 +133,10 @@
                     android:id="@+id/parking_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
                     android:layout_below="@+id/parking_number"
                     android:layout_centerHorizontal="true"
                     android:text="Parkings"
+                    android:textColor="@color/purple_200"
                     android:textSize="12sp" />
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -158,10 +158,10 @@
                 <ImageView
                     android:id="@+id/contact_icon"
                     android:layout_width="30dp"
-                    app:tint="@color/white"
                     android:layout_height="30dp"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_call" />
+                    android:src="@drawable/ic_call"
+                    app:tint="@color/purple_200"/>
 
                 <TextView
                     android:id="@+id/contact_line"
@@ -170,7 +170,7 @@
                     android:layout_below="@+id/contact_icon"
                     android:layout_centerHorizontal="true"
                     android:text="--"
-                    android:textColor="@color/white"
+                    android:textColor="@color/purple_200"
                     android:textFontWeight="900"
                     android:textSize="20sp" />
 
@@ -181,7 +181,7 @@
                     android:layout_below="@+id/contact_line"
                     android:layout_centerHorizontal="true"
                     android:text="Contact us"
-                    android:textColor="@color/white"
+                    android:textColor="@color/purple_200"
                     android:textSize="12sp" />
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
