@@ -8,7 +8,7 @@ public class ReservationRequest {
     private String plate_No;
     private int duration_in_minutes;
     private int parking_block;
-    private Double amount;
+    private int amount;
     private String Entry_time;
     private String Exit_time;
     private String booking_date;
@@ -16,7 +16,7 @@ public class ReservationRequest {
     public int getUser_id() {
         return user;
     }
-    public Double getAmount() {
+    public int getAmount() {
         return amount;
     }
     public int getParking_block() {
@@ -43,7 +43,7 @@ public class ReservationRequest {
         return booking_date;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 

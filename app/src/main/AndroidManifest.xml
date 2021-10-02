@@ -47,7 +47,6 @@
         <activity android:name=".ui.LoginActivity" />
         <activity android:name=".ui.ReservationActivity" />
         <activity android:name=".ui.RegisterActivity" />
-        <activity android:name=".ui.availableLocation" />
         <activity android:name=".ui.ParkingList"></activity>
     </application>
 

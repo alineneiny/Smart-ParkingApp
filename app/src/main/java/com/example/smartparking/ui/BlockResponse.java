@@ -4,14 +4,14 @@ import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 
-public class ImageResponse {
+public class BlockResponse {
     private String block_code;
    private JsonObject location;
   private  String is_block_full;
   private String is_accessible;
     private String number_of_slots;
 
-    public ImageResponse() {
+    public BlockResponse() {
     }
 
     public String getBlock_code() {

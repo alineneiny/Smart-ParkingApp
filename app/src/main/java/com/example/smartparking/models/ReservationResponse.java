@@ -6,7 +6,7 @@ public class ReservationResponse {
 
     private int user_id;
     private String plate_No;
-    private Double amount;
+    private int amount;
     private int duration_in_minutes;
     private int parking_block;
     private String Entry_time;
@@ -16,10 +16,10 @@ public class ReservationResponse {
     public int getUser_id() {
         return user_id;
     }
-    public Double getAmount() {
+    public int getAmount() {
         return amount;
     }
-    public void setAmount(Double amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 

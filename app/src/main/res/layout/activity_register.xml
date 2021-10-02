@@ -23,8 +23,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Create Account"
-            android:textColor="@color/raveBlack"
-            android:textSize="32dp"
+            android:textColor="@color/purple_200"
+            android:textSize="32sp"
             android:textStyle="bold"
             android:layout_gravity="center"
             android:layout_above="@+id/linearLayout"
@@ -103,10 +103,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:background="@color/green"
+            android:background="@color/purple_200"
             android:padding="10dp"
             android:text="Sign up"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <TextView
@@ -116,7 +116,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:text="Already have an account? Log in here!"
-            android:textColor="@color/black"
+            android:textColor="@color/rave_light_grey"
             android:textSize="20sp"
             android:textStyle="bold" />
 

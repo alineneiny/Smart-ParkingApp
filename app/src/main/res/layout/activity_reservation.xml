@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.ReservationActivity">
 
     <ImageView
@@ -26,9 +27,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Book your parking slot"
-            android:textColor="@color/raveBlack"
-            android:textSize="30dp"
+            android:text="BOOK PARKING SLOT"
+            android:textColor="@color/purple_200"
+            android:textSize="25sp"
             android:textStyle="bold"
             android:layout_gravity="center"
             android:layout_above="@+id/linearLayout"
@@ -98,10 +99,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:text="Book slot"
             android:textSize="20sp"
-            android:background="@color/green"
+            android:background="@color/purple_200"
             android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

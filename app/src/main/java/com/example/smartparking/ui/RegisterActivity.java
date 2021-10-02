@@ -88,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 if (response.isSuccessful()){
                     sharedPreferenceManager.saveUser(registerResponse.getUser());
                     Toast.makeText(RegisterActivity.this, "Register successful", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(RegisterActivity.this, ParkingList.class);
+                    Intent intent = new Intent(RegisterActivity.this, UserProfile.class);
                     intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();

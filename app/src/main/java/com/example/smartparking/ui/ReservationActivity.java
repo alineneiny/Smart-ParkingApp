@@ -80,8 +80,7 @@ public class ReservationActivity extends AppCompatActivity {
 
                                 String sDate=year+ "-"+(monthOfYear + 1)+"-"+dayOfMonth;
                                 entryDate.setText(sDate);
-                                //entryDate.setText(year+ "-"+(monthOfYear + 1)+"-"+dayOfMonth);
-
+                                
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
@@ -195,11 +194,12 @@ public class ReservationActivity extends AppCompatActivity {
         reservationRequest.setEntry_time(entryTime.getText().toString());
         reservationRequest.setExit_time(exitTime.getText().toString());
         reservationRequest.setDuration_in_minutes(60);
+        reservationRequest.setAmount(100);
         reservationRequest.setPlate_No(plateNo.getText().toString());
         return reservationRequest;
     }
     public void PayBooking(){
-        new RaveUiManager(ReservationActivity.this).setAmount(5000)
+        new RaveUiManager(ReservationActivity.this).setAmount(100)
                 .setCurrency("RWF")
                 .setEmail(sharedPreferenceManager.getUser().getEmail())
                 .setfName(sharedPreferenceManager.getUser().getLast_name())
@@ -208,7 +208,7 @@ public class ReservationActivity extends AppCompatActivity {
                 .setPublicKey("FLWPUBK_TEST-ffca2fc845cb11d844177c7456441df5-X")
                 .setEncryptionKey("FLWSECK_TEST47ebc4968736")
                 .setTxRef(System.currentTimeMillis()+"ref")
-                .setPhoneNumber("+250784603404", true)
+                .setPhoneNumber("+250781207615", true)
                 .acceptAccountPayments(false)
                 .acceptCardPayments(true)
                 .acceptMpesaPayments(false)
@@ -236,8 +236,10 @@ public class ReservationActivity extends AppCompatActivity {
                 if (response.isSuccessful()){
 
                     Toast.makeText(ReservationActivity.this, "Booking successful", Toast.LENGTH_LONG).show();
-                    Intent intent=new Intent(ReservationActivity.this,ContactUsActivity.class);
+                    Intent intent=new Intent(ReservationActivity.this,UserProfile.class);
+                    intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
+                    finish();
                 }else{
                     Toast.makeText(ReservationActivity.this, response.message(), Toast.LENGTH_LONG).show();
                 }

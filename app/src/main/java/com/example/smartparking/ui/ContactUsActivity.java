@@ -10,20 +10,16 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.smartparking.R;
+import com.google.android.material.card.MaterialCardView;
 
 public class ContactUsActivity extends AppCompatActivity {
-    private Button email,sms,call;
-    private TextView Name;
-    private TextView txt;
+    private MaterialCardView email,sms,call;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thank_you);
-        txt=findViewById(R.id.txt);
         email = findViewById(R.id.email);
         sms=findViewById(R.id.sms);
         call=findViewById(R.id.call);
@@ -31,7 +27,7 @@ public class ContactUsActivity extends AppCompatActivity {
         sms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse("smsto:0784603404");
+                Uri uri = Uri.parse("smsto:0781207615");
                 Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
                 intent.putExtra("sms_body", "");
                 startActivity(intent);
@@ -49,7 +45,7 @@ public class ContactUsActivity extends AppCompatActivity {
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "+250784603404"));
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "+250781207615"));
                 if (ContextCompat.checkSelfPermission(ContactUsActivity.this,
                         Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(ContactUsActivity.this, new String[]{Manifest.permission.CALL_PHONE},1);

@@ -29,7 +29,7 @@ public class ParkingList extends FragmentActivity {
 
     GridView gridView;
     Button button2;
-    private List<ImageResponse> imageResponses =new ArrayList<>();
+    private List<BlockResponse> blockRespons =new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,20 +38,20 @@ public class ParkingList extends FragmentActivity {
 
         gridView =findViewById(R.id.gridview);
         button2=findViewById(R.id.button2);
-        getAllImages();
+        getAllBlocks();
     }
 
 
-    public  void  getAllImages(){
-        Call<List<ImageResponse>>imagesResponse = ApiClient.getInterface().getAllImages();
-        imagesResponse.enqueue(new Callback<List<ImageResponse>>() {
+    public  void  getAllBlocks(){
+        Call<List<BlockResponse>>imagesResponse = ApiClient.getInterface().getAllImages();
+        imagesResponse.enqueue(new Callback<List<BlockResponse>>() {
             @Override
-            public void onResponse(Call<List<ImageResponse>> call, Response<List<ImageResponse>> response) {
+            public void onResponse(Call<List<BlockResponse>> call, Response<List<BlockResponse>> response) {
                 if(response.isSuccessful()){
                     String message ="Request successful";
                     Toast.makeText(ParkingList.this,message,Toast.LENGTH_LONG).show();
-                    imageResponses=response.body();
-                    CustomAdapter customAdapter = new CustomAdapter(imageResponses, ParkingList.this);
+                    blockRespons =response.body();
+                    CustomAdapter customAdapter = new CustomAdapter(blockRespons, ParkingList.this);
                     gridView.setAdapter(customAdapter);
 
                 }
@@ -63,7 +63,7 @@ public class ParkingList extends FragmentActivity {
             }
 
             @Override
-            public void onFailure(Call<List<ImageResponse>> call, Throwable t) {
+            public void onFailure(Call<List<BlockResponse>> call, Throwable t) {
                 String message =t.getLocalizedMessage();
                 Toast.makeText(ParkingList.this,message,Toast.LENGTH_LONG).show();
 
@@ -71,20 +71,20 @@ public class ParkingList extends FragmentActivity {
         });
     }
     public class CustomAdapter extends BaseAdapter{
-        private List<ImageResponse>imageResponseList;
+        private List<BlockResponse> blockResponseList;
         private Context context;
         private LayoutInflater layoutInflater;
 
 
-        public CustomAdapter(List<ImageResponse> imageResponseList, Context context) {
-            this.imageResponseList = imageResponseList;
+        public CustomAdapter(List<BlockResponse> blockResponseList, Context context) {
+            this.blockResponseList = blockResponseList;
             this.context = context;
             this.layoutInflater=(LayoutInflater)context.getSystemService(LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
         public int getCount() {
-            return imageResponseList.size();
+            return blockResponseList.size();
         }
 
         @Override
@@ -112,12 +112,12 @@ public class ParkingList extends FragmentActivity {
                         startActivity(new Intent(ParkingList.this, ReservationActivity.class));
                     }
                 });
-                JsonObject loc= imageResponseList.get(position).getLocation();
+                JsonObject loc= blockResponseList.get(position).getLocation();
                 location.setText( "Location: "+" "+ loc.get("name"));
-                slot.setText("Slots:"+" "+imageResponseList.get(position).getNumber_of_slots());
-                block.setText("Block Code:"+" "+imageResponseList.get(position).getBlock_code());
+                slot.setText("Slots:"+" "+ blockResponseList.get(position).getNumber_of_slots());
+                block.setText("Block Code:"+" "+ blockResponseList.get(position).getBlock_code());
 
-//                GlideApp.with(context).load(imageResponseList.get(position).getBlock_photo()).into(imageView);
+//                GlideApp.with(context).load(blockResponseList.get(position).getBlock_photo()).into(imageView);
             }
             return convertView;
         }

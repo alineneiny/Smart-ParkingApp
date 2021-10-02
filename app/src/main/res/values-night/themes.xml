@@ -18,33 +18,30 @@
         <item name="colorPrimary">@color/brown</item>
         <item name="colorPrimaryDark">@color/brown</item>
         <item name="colorAccent">@color/brown</item>
-<!--        <item name="OTPButtonStyle">@style/otpBtnStyle2</item>-->
-<!--        <item name="PayButtonStyle">@style/payBtnStyle2</item>-->
-<!--        <item name="OTPHeaderStyle">@style/otpHeaderStyle2</item>-->
-<!--        <item name="TabLayoutStyle">@style/tabLayoutStyle2</item>-->
-<!--        <item name="PinHeaderStyle">@style/pinHeaderStyle2</item>-->
-<!--        <item name="SavedCardButtonStyle">@style/svdCardsBtnStyle2</item>-->
-<!--        <item name="PaymentTileStyle">@style/newPaymentTileStyle</item>-->
-<!--        <item name="PaymentTileTextStyle">@style/newPaymentTileTextStyle</item>-->
-<!--        <item name="PaymentTileDividerStyle">@style/newPaymentTileDividerStyle</item>-->
+        <item name="OTPButtonStyle">@style/otpBtnStyle2</item>
+        <item name="PayButtonStyle">@style/payBtnStyle2</item>
+        <item name="OTPHeaderStyle">@style/otpHeaderStyle2</item>
+        <item name="TabLayoutStyle">@style/tabLayoutStyle2</item>
+        <item name="PinHeaderStyle">@style/pinHeaderStyle2</item>
+        <item name="SavedCardButtonStyle">@style/svdCardsBtnStyle2</item>
     </style>
 
-<!--    <style name="newPaymentTileTextStyle">-->
-<!--        <item name="android:background">@color/green</item>-->
-<!--    </style>-->
+    <style name="newPaymentTileTextStyle">
+        <item name="android:background">@color/teal_700</item>
+    </style>
 
-<!--    <style name="newPaymentTileDividerStyle">-->
-<!--        <item name="android:background">@color/green</item>-->
-<!--    </style>-->
+    <style name="newPaymentTileDividerStyle">
+        <item name="android:background">@color/teal_200</item>
+    </style>
 
-<!--    <style name="newPaymentTileStyle">-->
-<!--        <item name="android:background">@color/green</item>-->
-<!--    </style>-->
+    <style name="newPaymentTileStyle">
+        <item name="android:background">@color/teal_200</item>
+    </style>
 
-<!--    <style name="payBtnStyle2" parent="@android:style/Widget.Button">-->
-<!--        <item name="android:background">@color/green</item>-->
-<!--        <item name="android:textColor">@color/white</item>-->
-<!--    </style>-->
+    <style name="payBtnStyle2" parent="@android:style/Widget.Button">
+        <item name="android:background">@color/teal_200</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 
 
 </resources>
