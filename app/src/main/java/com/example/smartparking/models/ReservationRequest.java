@@ -4,29 +4,27 @@ import java.sql.Time;
 
 public class ReservationRequest {
 
-    private int user_id;
-    private int plate_No;
+    private int user;
+    private String plate_No;
     private int duration_in_minutes;
-    private int location;
-    private int parking_slot_id;
+    private int parking_block;
+    private Double amount;
     private String Entry_time;
     private String Exit_time;
     private String booking_date;
 
     public int getUser_id() {
-        return user_id;
+        return user;
+    }
+    public Double getAmount() {
+        return amount;
+    }
+    public int getParking_block() {
+        return parking_block;
     }
 
-    public int getParking_slot_id() {
-        return parking_slot_id;
-    }
-
-    public int getPlate_No() {
+    public String getPlate_No() {
         return plate_No;
-    }
-
-    public int getLocation() {
-        return location;
     }
 
     public String getEntry_time() {
@@ -45,24 +43,24 @@ public class ReservationRequest {
         return booking_date;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 
-    public void setPlate_No(int plate_No) {
-        this.plate_No = plate_No;
+    public void setUser_id(int user) {
+        this.user = user;
+    }
+
+    public void setPlate_No(String Plate_No) {
+        plate_No = Plate_No;
     }
 
     public void setDuration_in_minutes(int duration_in_minutes) {
         this.duration_in_minutes = duration_in_minutes;
     }
 
-    public void setLocation(int location) {
-        this.location = location;
-    }
-
-    public void setParking_slot_id(int parking_slot_id) {
-        this.parking_slot_id = parking_slot_id;
+    public void setParking_block(int parking_block) {
+        this.parking_block = parking_block;
     }
 
     public void setEntry_time(String entry_time) {

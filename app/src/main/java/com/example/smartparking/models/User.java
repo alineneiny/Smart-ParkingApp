@@ -1,29 +1,28 @@
 package com.example.smartparking.models;
 
 public class User {
-    //private int id;
-    private int  pk;
+    private int id;
     private String username;
     private String email;
-    private String full_name;
+    private String first_name;
+    private String last_name;
     private String role;
-    private String phone_number;
 
-    public User(int pk, String username, String full_name, String email, String phone_number, String role) {
-        this.pk = pk;
+    public User(int id, String username, String full_name, String email, String last_name, String role) {
+        this.id = id;
         this.username = username;
         this.email = email;
-        this.full_name = full_name;
+        this.first_name = full_name;
         this.role = role;
-        this.phone_number = phone_number;
+        this.last_name= last_name;
     }
 
-    public int getPk() {
-        return pk;
+    public int getId() {
+        return id;
     }
 
-    public void setPk(int pk) {
-        this.pk = pk;
+    public void setPk(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -42,12 +41,12 @@ public class User {
         this.email = email;
     }
 
-    public String getFull_name() {
-        return full_name;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
     public String getRole() {
@@ -58,11 +57,11 @@ public class User {
         this.role = role;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhone_number(String last_name) {
+        this.last_name = last_name;
     }
 }

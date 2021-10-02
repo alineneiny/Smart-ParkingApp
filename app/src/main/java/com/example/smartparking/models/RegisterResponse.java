@@ -6,7 +6,12 @@ public class RegisterResponse {
     private String first_name;
     private String last_name;
     private String password;
+    private User user;
 
+
+    public RegisterResponse(User user) {
+        this.user = user;
+    }
     public int getId() {
         return id;
     }
@@ -45,5 +50,12 @@ public class RegisterResponse {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

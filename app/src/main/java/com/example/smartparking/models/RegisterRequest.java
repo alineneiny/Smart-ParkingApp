@@ -4,6 +4,8 @@ public class RegisterRequest {
 
     private String username;
     private String first_name;
+    private String email;
+    private String phone;
     private String last_name;
     private String password;
 
@@ -18,11 +20,21 @@ public class RegisterRequest {
     public String getFirst_name() {
         return first_name;
     }
-
+    public String getEmail() {
+        return email;
+    }
+    public String getPhone() {
+        return phone;
+    }
     public void setFirst_name(String first_name) {
         this.first_name = first_name;
     }
-
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
     public String getLast_name() {
         return last_name;
     }

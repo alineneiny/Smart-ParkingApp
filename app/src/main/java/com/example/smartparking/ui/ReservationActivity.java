@@ -24,6 +24,7 @@ import com.example.smartparking.R;
 import com.example.smartparking.models.ReservationRequest;
 import com.example.smartparking.models.ReservationResponse;
 import com.example.smartparking.services.ApiClient;
+import com.example.smartparking.storage.SharedPreferenceManager;
 import com.flutterwave.raveandroid.RavePayActivity;
 import com.flutterwave.raveandroid.RaveUiManager;
 import com.flutterwave.raveandroid.rave_java_commons.RaveConstants;
@@ -38,10 +39,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ReservationActivity extends AppCompatActivity {
-
+    SharedPreferenceManager sharedPreferenceManager;
     @BindView(R.id.editTextEntryDate) EditText entryDate;
     @BindView(R.id.editTextExitTime) EditText exitTime;
     @BindView(R.id.editTextEntryTime) EditText entryTime;
+    @BindView(R.id.editPlateNo) EditText plateNo;
     @BindView(R.id.reservationButton) Button reservationButton;
     private int mHour, mMinute,mSecond,mYear, mMonth, mDay;
     String format;
@@ -55,7 +57,7 @@ public class ReservationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation);
-
+        sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
         ButterKnife.bind(this);
         topAnim= AnimationUtils.loadAnimation(this,R.anim.top_animation);
         bottomAnim= AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
@@ -178,7 +180,7 @@ public class ReservationActivity extends AppCompatActivity {
         reservationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveReservation(addReservation());
+                PayBooking();
             }
         });
 
@@ -187,15 +189,44 @@ public class ReservationActivity extends AppCompatActivity {
 
     public ReservationRequest addReservation(){
         ReservationRequest reservationRequest = new ReservationRequest();
-        reservationRequest.setUser_id(1);
-        reservationRequest.setParking_slot_id(1);
+        reservationRequest.setUser_id(sharedPreferenceManager.getUser().getId());
+        reservationRequest.setParking_block(1);
         reservationRequest.setBooking_date(entryDate.getText().toString());
         reservationRequest.setEntry_time(entryTime.getText().toString());
         reservationRequest.setExit_time(exitTime.getText().toString());
         reservationRequest.setDuration_in_minutes(60);
-        reservationRequest.setPlate_No(1);
-        reservationRequest.setLocation(1);
+        reservationRequest.setPlate_No(plateNo.getText().toString());
         return reservationRequest;
+    }
+    public void PayBooking(){
+        new RaveUiManager(ReservationActivity.this).setAmount(5000)
+                .setCurrency("RWF")
+                .setEmail(sharedPreferenceManager.getUser().getEmail())
+                .setfName(sharedPreferenceManager.getUser().getLast_name())
+                .setlName(sharedPreferenceManager.getUser().getFirst_name())
+                .setNarration("parking")
+                .setPublicKey("FLWPUBK_TEST-ffca2fc845cb11d844177c7456441df5-X")
+                .setEncryptionKey("FLWSECK_TEST47ebc4968736")
+                .setTxRef(System.currentTimeMillis()+"ref")
+                .setPhoneNumber("+250784603404", true)
+                .acceptAccountPayments(false)
+                .acceptCardPayments(true)
+                .acceptMpesaPayments(false)
+                .acceptAchPayments(false)
+                .acceptGHMobileMoneyPayments(false)
+                .acceptUgMobileMoneyPayments(false)
+                .acceptZmMobileMoneyPayments(false)
+                .acceptRwfMobileMoneyPayments(true)
+                .acceptSaBankPayments(false)
+                .acceptUkPayments(false)
+                .acceptBankTransferPayments(false)
+                .acceptUssdPayments(false)
+                .acceptBarterPayments(false)
+                .acceptFrancMobileMoneyPayments(false)
+                .allowSaveCardFeature(false)
+                .onStagingEnv(false)
+                .withTheme(R.style.MyCustomTheme)
+                .initialize();
     }
     public void saveReservation(ReservationRequest reservationRequest){
         Call<ReservationResponse> reservationResponseCall = ApiClient.getReservationService().saveReservation(reservationRequest);
@@ -204,34 +235,9 @@ public class ReservationActivity extends AppCompatActivity {
             public void onResponse(Call<ReservationResponse> call, Response<ReservationResponse> response) {
                 if (response.isSuccessful()){
 
-                    new RaveUiManager(ReservationActivity.this).setAmount(100)
-                            .setCurrency("RWF")
-                            .setEmail("ndabaramiye15@gmail.com")
-                            .setfName("Charles")
-                            .setlName("Ndabaramiye")
-                            .setNarration("narration")
-                            .setPublicKey("FLWPUBK_TEST-b731960372b6afd5d5d4dd2adcf5336d-X")
-                            .setEncryptionKey("FLWSECK_TESTd6b28b6e96b3")
-                            .setTxRef("txRef")
-                            .setPhoneNumber("+250784603404", true)
-                            .acceptAccountPayments(false)
-                            .acceptCardPayments(true)
-                            .acceptMpesaPayments(false)
-                            .acceptAchPayments(false)
-                            .acceptGHMobileMoneyPayments(false)
-                            .acceptUgMobileMoneyPayments(false)
-                            .acceptZmMobileMoneyPayments(false)
-                            .acceptRwfMobileMoneyPayments(true)
-                            .acceptSaBankPayments(false)
-                            .acceptUkPayments(false)
-                            .acceptBankTransferPayments(false)
-                            .acceptUssdPayments(false)
-                            .acceptBarterPayments(false)
-                            .acceptFrancMobileMoneyPayments(false)
-                            .allowSaveCardFeature(false)
-                            .onStagingEnv(false)
-                            .withTheme(R.style.MyCustomTheme)
-                            .initialize();
+                    Toast.makeText(ReservationActivity.this, "Booking successful", Toast.LENGTH_LONG).show();
+                    Intent intent=new Intent(ReservationActivity.this,ContactUsActivity.class);
+                    startActivity(intent);
                 }else{
                     Toast.makeText(ReservationActivity.this, response.message(), Toast.LENGTH_LONG).show();
                 }
@@ -252,9 +258,7 @@ public class ReservationActivity extends AppCompatActivity {
         if (requestCode == RaveConstants.RAVE_REQUEST_CODE && data != null) {
             String message = data.getStringExtra("response");
             if (resultCode == RavePayActivity.RESULT_SUCCESS) {
-                Toast.makeText(this, "Booking successful", Toast.LENGTH_LONG).show();
-                Intent intent=new Intent(ReservationActivity.this,ContactUsActivity.class);
-                startActivity(intent);
+                saveReservation(addReservation());
             }
             else if (resultCode == RavePayActivity.RESULT_ERROR) {
                 Toast.makeText(this, "ERROR " , Toast.LENGTH_SHORT).show();

@@ -33,6 +33,19 @@
             android:layout_gravity="center"
             android:layout_above="@+id/linearLayout"
             android:layout_centerHorizontal="true" />
+        <EditText
+            android:id="@+id/editPlateNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#028C8484"
+            android:textColor="@color/black"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp"
+            android:hint="RAB123C"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:drawableEnd="@drawable/ic_car"
+            android:drawableRight="@drawable/ic_car" />
 
         <EditText
             android:id="@+id/editTextEntryDate"

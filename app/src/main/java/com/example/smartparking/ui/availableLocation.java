@@ -103,7 +103,7 @@ public class availableLocation extends AppCompatActivity {
                 name.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent=new Intent(availableLocation.this, MainActivity.class);
+                        Intent intent=new Intent(availableLocation.this, ParkingList.class);
                         startActivity(intent);
                     }
                 });

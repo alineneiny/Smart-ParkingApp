@@ -5,10 +5,10 @@ import java.sql.Time;
 public class ReservationResponse {
 
     private int user_id;
-    private int plate_No;
+    private String plate_No;
+    private Double amount;
     private int duration_in_minutes;
-    private int location;
-    private int parking_slot_id;
+    private int parking_block;
     private String Entry_time;
     private String Exit_time;
     private String booking_date;
@@ -16,17 +16,19 @@ public class ReservationResponse {
     public int getUser_id() {
         return user_id;
     }
-
-    public int getParking_slot_id() {
-        return parking_slot_id;
+    public Double getAmount() {
+        return amount;
+    }
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 
-    public int getPlate_No() {
+    public int getParking_block() {
+        return parking_block;
+    }
+
+    public String getPlate_No() {
         return plate_No;
-    }
-
-    public int getLocation() {
-        return location;
     }
 
     public String getEntry_time() {
@@ -49,20 +51,17 @@ public class ReservationResponse {
         this.user_id = user_id;
     }
 
-    public void setPlate_No(int plate_No) {
-        this.plate_No = plate_No;
+    public void setPlate_No(String Plate_No) {
+        plate_No = Plate_No;
     }
 
     public void setDuration_in_minutes(int duration_in_minutes) {
         this.duration_in_minutes = duration_in_minutes;
     }
 
-    public void setLocation(int location) {
-        this.location = location;
-    }
 
-    public void setParking_slot_id(int parking_slot_id) {
-        this.parking_slot_id = parking_slot_id;
+    public void setParking_block(int parking_block) {
+        this.parking_block = parking_block;
     }
 
     public void setEntry_time(String entry_time) {

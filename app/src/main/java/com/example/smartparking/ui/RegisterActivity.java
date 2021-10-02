@@ -11,7 +11,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,10 +34,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @BindView(R.id.username) EditText username;
     @BindView(R.id.lname) EditText lname;
     @BindView(R.id.fname) EditText fname;
+    @BindView(R.id.email) EditText email;
     @BindView(R.id.passwordEditText) EditText mPasswordEditText;
     @BindView(R.id.loginTextView) TextView mLoginTextView;
-    @BindView(R.id.image2)
-    ImageView image;
     @BindView(R.id.linearLayout)
     LinearLayout linearLayout;
     Animation topAnim, bottomAnim;
@@ -53,8 +51,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mCreateUserButton.setOnClickListener(this);
         topAnim= AnimationUtils.loadAnimation(this,R.anim.top_animation);
         bottomAnim= AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
-        image.setAnimation(topAnim);
         linearLayout.setAnimation(bottomAnim);
+        sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
     }
 
     @Override
@@ -74,6 +72,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         registerRequest.setUsername(username.getText().toString());
         registerRequest.setPassword(mPasswordEditText.getText().toString());
         registerRequest.setFirst_name(fname.getText().toString());
+        registerRequest.setEmail(email.getText().toString());
         registerRequest.setLast_name(lname.getText().toString());
 
         return registerRequest;
@@ -85,10 +84,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         registerResponseCall.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-
+                RegisterResponse registerResponse = response.body();
                 if (response.isSuccessful()){
+                    sharedPreferenceManager.saveUser(registerResponse.getUser());
                     Toast.makeText(RegisterActivity.this, "Register successful", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    Intent intent = new Intent(RegisterActivity.this, ParkingList.class);
                     intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
