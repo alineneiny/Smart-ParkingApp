@@ -27,7 +27,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/pimage"
             android:text="Charles NDAYISABA"
-            android:textColor="@color/purple_200"
+            android:textColor="@color/purple_500"
             android:textSize="20sp"
             android:textStyle="bold" />
         <TextView
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/pimage"
             android:text="nc@gmail.com"
-            android:textColor="@color/purple_200"
+            android:textColor="@color/purple_500"
             android:textSize="14sp"
             android:textStyle="bold"
             android:layout_below="@+id/fullName"
@@ -43,6 +43,15 @@
             android:layout_marginLeft="10dp"
             />
 
+        <ImageView
+            android:id="@+id/logoutBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            app:tint="@color/purple_700"
+            android:layout_toRightOf="@id/fullName"
+            android:src="@drawable/ic_logout" />
     </RelativeLayout>
 
     <LinearLayout
@@ -93,6 +102,7 @@
                     android:text="Receipts"
                     android:textColor="@color/purple_200"
                     android:textSize="12sp" />
+
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
         <com.google.android.material.card.MaterialCardView

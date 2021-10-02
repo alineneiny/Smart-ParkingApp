@@ -21,7 +21,7 @@ public class User {
         return id;
     }
 
-    public void setPk(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -61,7 +61,4 @@ public class User {
         return last_name;
     }
 
-    public void setPhone_number(String last_name) {
-        this.last_name = last_name;
-    }
 }

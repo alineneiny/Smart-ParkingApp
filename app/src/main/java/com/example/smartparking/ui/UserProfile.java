@@ -11,11 +11,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.smartparking.R;
 import com.example.smartparking.services.ApiClient;
+import com.example.smartparking.storage.SharedPreferenceManager;
 import com.google.android.material.card.MaterialCardView;
 import com.google.gson.JsonObject;
 
@@ -30,9 +32,12 @@ import retrofit2.Response;
 
 public class UserProfile extends FragmentActivity implements View.OnClickListener {
     @BindView(R.id.cardParking) MaterialCardView cardParking;
+    @BindView(R.id.logoutBtn) ImageButton logoutBtn;
     @BindView(R.id.contactus) MaterialCardView contactus;
-    GridView gridView;
-    Button button2;
+    @BindView(R.id.gridview) GridView gridView;
+    @BindView(R.id.button2)  Button button2;
+
+    SharedPreferenceManager sharedPreferenceManager;
     private List<BlockResponse> blockRespons = new ArrayList<>();
 
     @Override
@@ -42,9 +47,10 @@ public class UserProfile extends FragmentActivity implements View.OnClickListene
         ButterKnife.bind(this);
         cardParking.setOnClickListener(this);
         contactus.setOnClickListener(this);
-        gridView = findViewById(R.id.gridview);
-        button2 = findViewById(R.id.button2);
+        button2.setOnClickListener(this);
+        logoutBtn.setOnClickListener(this);
         getAllBlocks();
+        sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
     }
 
     public void getAllBlocks() {
@@ -85,6 +91,13 @@ public class UserProfile extends FragmentActivity implements View.OnClickListene
         if (v == contactus) {
             Intent intent = new Intent(UserProfile.this, ContactUsActivity.class);
             startActivity(intent);
+        }
+        if (v == logoutBtn) {
+            sharedPreferenceManager.logout();
+            Intent intent = new Intent(UserProfile.this, LoginActivity.class);
+            intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
         }
     }
 
