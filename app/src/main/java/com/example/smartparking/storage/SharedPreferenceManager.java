@@ -25,7 +25,7 @@ public class SharedPreferenceManager {
         editor.putString("first_name", user.getFirst_name());
         editor.putString("username", user.getUsername());
         editor.putString("email", user.getEmail());
-        editor.putString("role", user.getRole());
+        editor.putBoolean("is_staff", user.getRole());
         editor.putString("last_name", user.getLast_name());
         editor.putBoolean("Logged in", true);
         editor.apply();
@@ -46,7 +46,7 @@ public class SharedPreferenceManager {
                 sharedPreferences.getString("username", null),
                 sharedPreferences.getString("email", null),
                 sharedPreferences.getString("last_name", null),
-                sharedPreferences.getString("role", null));
+                sharedPreferences.getBoolean("is_staff", false));
 
     }
 

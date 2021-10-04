@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,25 +33,36 @@ import retrofit2.Response;
 
 public class UserProfile extends FragmentActivity implements View.OnClickListener {
     @BindView(R.id.cardParking) MaterialCardView cardParking;
-    @BindView(R.id.logoutBtn) ImageButton logoutBtn;
+    @BindView(R.id.logoutBtn) ImageView logoutBtn;
     @BindView(R.id.contactus) MaterialCardView contactus;
     @BindView(R.id.gridview) GridView gridView;
-    @BindView(R.id.button2)  Button button2;
+    @BindView(R.id.full_name) TextView full_name;
+    @BindView(R.id.email) TextView email;
+    @BindView(R.id.release) MaterialCardView releaseCar;
 
     SharedPreferenceManager sharedPreferenceManager;
-    private List<BlockResponse> blockRespons = new ArrayList<>();
+    private List<BlockResponse> blockResponse = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         ButterKnife.bind(this);
+        sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
         cardParking.setOnClickListener(this);
         contactus.setOnClickListener(this);
-        button2.setOnClickListener(this);
+        releaseCar.setOnClickListener(this);
         logoutBtn.setOnClickListener(this);
+        full_name.setText(sharedPreferenceManager.getUser().getFirst_name()+", "+sharedPreferenceManager.getUser().getLast_name());
+        email.setText(sharedPreferenceManager.getUser().getEmail());
+        if(sharedPreferenceManager.getUser().getRole()==true){
+            releaseCar.setVisibility(View.VISIBLE);
+            contactus.setVisibility(View.GONE);
+        }else {
+            releaseCar.setVisibility(View.GONE);
+            contactus.setVisibility(View.VISIBLE);
+        }
         getAllBlocks();
-        sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
     }
 
     public void getAllBlocks() {
@@ -59,10 +71,8 @@ public class UserProfile extends FragmentActivity implements View.OnClickListene
             @Override
             public void onResponse(Call<List<BlockResponse>> call, Response<List<BlockResponse>> response) {
                 if (response.isSuccessful()) {
-                    String message = "Request successful";
-                    Toast.makeText(UserProfile.this, message, Toast.LENGTH_LONG).show();
-                    blockRespons = response.body();
-                    UserProfile.CustomAdapter customAdapter = new UserProfile.CustomAdapter(blockRespons, UserProfile.this);
+                    blockResponse = response.body();
+                    UserProfile.CustomAdapter customAdapter = new UserProfile.CustomAdapter(blockResponse, UserProfile.this);
                     gridView.setAdapter(customAdapter);
 
                 } else {
@@ -89,9 +99,10 @@ public class UserProfile extends FragmentActivity implements View.OnClickListene
 
         }
         if (v == contactus) {
-            Intent intent = new Intent(UserProfile.this, ContactUsActivity.class);
-            startActivity(intent);
+                Intent intent = new Intent(UserProfile.this, ContactUsActivity.class);
+                startActivity(intent);
         }
+
         if (v == logoutBtn) {
             sharedPreferenceManager.logout();
             Intent intent = new Intent(UserProfile.this, LoginActivity.class);

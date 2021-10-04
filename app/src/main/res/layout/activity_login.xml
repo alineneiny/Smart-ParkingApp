@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.LoginActivity">
 
     <ImageView
@@ -29,8 +30,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
-            android:textColor="@color/raveBlack"
-            android:textSize="32dp"
+            android:textColor="@color/purple_200"
+            android:textSize="32sp"
             android:textStyle="bold"
             android:layout_gravity="center"
             android:layout_above="@+id/linearLayout"
@@ -67,10 +68,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:background="@color/green"
+            android:background="@color/purple_200"
             android:padding="10dp"
             android:text="Login"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <TextView

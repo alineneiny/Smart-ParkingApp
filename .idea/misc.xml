@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/drawable/ic_receipt.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/ic_sms.xml" value="0.278125" />
         <entry key="app/src/main/res/layout/activity_available_location.xml" value="0.26197916666666665" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.26197916666666665" />
