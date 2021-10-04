@@ -20,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.Receipt"
+            android:exported="true" />
+        <activity
             android:name=".ui.UserProfile"
             android:exported="true" />
         <!--
@@ -36,7 +39,7 @@
         <!-- android:name=".MapsActivity" -->
         <!-- android:label="@string/title_activity_maps"> -->
         <!-- </activity> -->
-        <activity android:name=".ui.ContactUsActivity"></activity>
+        <activity android:name=".ui.ContactUsActivity" />
         <activity android:name=".ui.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,7 +50,7 @@
         <activity android:name=".ui.LoginActivity" />
         <activity android:name=".ui.ReservationActivity" />
         <activity android:name=".ui.RegisterActivity" />
-        <activity android:name=".ui.ParkingList"></activity>
+        <activity android:name=".ui.ParkingList" />
     </application>
 
 </manifest>
