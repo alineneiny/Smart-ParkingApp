@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/bottom_sheet_bg.xml" value="0.278125" />
+        <entry key="app/src/main/res/drawable/button_bg.xml" value="0.278125" />
+        <entry key="app/src/main/res/drawable/custom_bg.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/ic_call.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/ic_car.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/ic_check_circle.xml" value="0.278125" />
@@ -15,12 +17,14 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.26197916666666665" />
+        <entry key="app/src/main/res/layout/activity_parking_list.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_receipt.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_reservation.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_thank_you.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.26197916666666665" />
+        <entry key="app/src/main/res/layout/layout_bottom_sheet.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/receipt.xml" value="0.18840579710144928" />
         <entry key="app/src/main/res/layout/row.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/row1.xml" value="0.26197916666666665" />

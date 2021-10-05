@@ -54,7 +54,7 @@ public class UserProfile extends FragmentActivity implements View.OnClickListene
         releaseCar.setOnClickListener(this);
         logoutBtn.setOnClickListener(this);
         receipts.setOnClickListener(this);
-        full_name.setText(sharedPreferenceManager.getUser().getFirst_name()+", "+sharedPreferenceManager.getUser().getLast_name());
+        full_name.setText(sharedPreferenceManager.getUser().getUsername()+", "+sharedPreferenceManager.getUser().getLast_name());
         email.setText(sharedPreferenceManager.getUser().getEmail());
         if(sharedPreferenceManager.getUser().getRole()==true){
             releaseCar.setVisibility(View.VISIBLE);
