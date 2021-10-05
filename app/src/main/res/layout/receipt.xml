@@ -45,17 +45,7 @@
             android:textColorHint="@color/rave_light_grey"
             android:textColor="@color/rave_light_grey"/>
 
-        <TextView
-            android:id="@+id/slot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/block"
-            android:textSize="16sp"
-            android:layout_marginTop="10dp"
-            android:hint="Slots: "
-            android:layout_centerHorizontal="true"
-            android:textColorHint="@color/rave_light_grey"
-            android:textColor="@color/rave_light_grey"/>
+
             <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,7 +54,7 @@
             android:layout_centerHorizontal="true"
             android:textSize="16sp"
             android:id="@+id/date"
-            android:layout_below="@+id/slot"
+            android:layout_below="@+id/block"
             />
             <TextView
                 android:layout_width="wrap_content"

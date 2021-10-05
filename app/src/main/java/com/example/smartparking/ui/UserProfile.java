@@ -34,6 +34,7 @@ public class UserProfile extends FragmentActivity implements View.OnClickListene
     @BindView(R.id.cardParking) MaterialCardView cardParking;
     @BindView(R.id.logoutBtn) ImageView logoutBtn;
     @BindView(R.id.contactus) MaterialCardView contactus;
+    @BindView(R.id.receipts) MaterialCardView receipts;
     @BindView(R.id.gridview) GridView gridView;
     @BindView(R.id.full_name) TextView full_name;
     @BindView(R.id.email) TextView email;
@@ -52,6 +53,7 @@ public class UserProfile extends FragmentActivity implements View.OnClickListene
         contactus.setOnClickListener(this);
         releaseCar.setOnClickListener(this);
         logoutBtn.setOnClickListener(this);
+        receipts.setOnClickListener(this);
         full_name.setText(sharedPreferenceManager.getUser().getFirst_name()+", "+sharedPreferenceManager.getUser().getLast_name());
         email.setText(sharedPreferenceManager.getUser().getEmail());
         if(sharedPreferenceManager.getUser().getRole()==true){
@@ -101,7 +103,10 @@ public class UserProfile extends FragmentActivity implements View.OnClickListene
                 Intent intent = new Intent(UserProfile.this, ContactUsActivity.class);
                 startActivity(intent);
         }
-
+        if (v == receipts) {
+            Intent intent = new Intent(UserProfile.this, Receipt.class);
+            startActivity(intent);
+        }
         if (v == logoutBtn) {
             sharedPreferenceManager.logout();
             Intent intent = new Intent(UserProfile.this, LoginActivity.class);
@@ -158,7 +163,6 @@ public class UserProfile extends FragmentActivity implements View.OnClickListene
                 slot.setText("Slots:" + " " + blockResponseList.get(position).getNumber_of_slots());
                 block.setText("Block Code:" + " " + blockResponseList.get(position).getBlock_code());
 
-//                GlideApp.with(context).load(blockResponseList.get(position).getBlock_photo()).into(imageView);
             }
             return convertView;
         }

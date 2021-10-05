@@ -2,7 +2,6 @@ package com.example.smartparking.ui;
 
 import com.google.gson.JsonObject;
 
-import org.json.JSONArray;
 
 public class BlockResponse {
     private String block_code;
