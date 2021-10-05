@@ -27,9 +27,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BOOK PARKING SLOT"
+            android:text="BOOK PARKING SLOt"
             android:textColor="@color/purple_200"
             android:textSize="25sp"
+           android:textAllCaps="true"
             android:textStyle="bold"
             android:layout_gravity="center"
             android:layout_above="@+id/linearLayout"

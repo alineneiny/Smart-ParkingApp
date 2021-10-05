@@ -1,5 +1,7 @@
 package com.example.smartparking.ui;
 
+import static java.lang.String.*;
+
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -20,6 +22,9 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.smartparking.R;
 import com.example.smartparking.models.ReservationRequest;
 import com.example.smartparking.models.ReservationResponse;
@@ -30,7 +35,10 @@ import com.flutterwave.raveandroid.RaveUiManager;
 import com.flutterwave.raveandroid.rave_java_commons.RaveConstants;
 
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,13 +53,17 @@ public class ReservationActivity extends AppCompatActivity {
     @BindView(R.id.editTextEntryTime) EditText entryTime;
     @BindView(R.id.editPlateNo) EditText plateNo;
     @BindView(R.id.reservationButton) Button reservationButton;
+    Date date1;
+    Date date2;
     private int mHour, mMinute,mSecond,mYear, mMonth, mDay;
     String format;
+    long dMinutes;
     @BindView(R.id.image3)
     ImageView image;
     @BindView(R.id.linearLayout)
     LinearLayout linearLayout;
     Animation topAnim, bottomAnim;
+    AwesomeValidation awesomeValidation;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +80,11 @@ public class ReservationActivity extends AppCompatActivity {
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
+        //validation style
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+        // add validations
+        awesomeValidation.addValidation(this,R.id.plate,"{7}",R.string.invalid_plate_No);
+        awesomeValidation.addValidation(this,R.id.date, RegexTemplate.NOT_EMPTY,R.string.invalid_booking);
         entryDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,7 +196,9 @@ public class ReservationActivity extends AppCompatActivity {
         reservationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PayBooking();
+                if(awesomeValidation.validate() ) {
+                    PayBooking();
+                }
             }
         });
 
@@ -187,6 +206,18 @@ public class ReservationActivity extends AppCompatActivity {
     }
 
     public ReservationRequest addReservation(){
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        try {
+            date1 = format.parse(valueOf(entryTime));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            date2 = format.parse(valueOf(exitTime));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        dMinutes= date1.getTime() - date2.getTime();
         ReservationRequest reservationRequest = new ReservationRequest();
         reservationRequest.setUser_id(sharedPreferenceManager.getUser().getId());
         reservationRequest.setParking_block(1);

@@ -7,7 +7,7 @@ public class ReservationResponse {
     private int user_id;
     private String plate_No;
     private int amount;
-    private int duration_in_minutes;
+    private long duration_in_minutes;
     private int parking_block;
     private String Entry_time;
     private String Exit_time;
@@ -39,7 +39,7 @@ public class ReservationResponse {
         return Exit_time;
     }
 
-    public int getDuration_in_minutes() {
+    public long getDuration_in_minutes() {
         return duration_in_minutes;
     }
 
@@ -55,7 +55,7 @@ public class ReservationResponse {
         plate_No = Plate_No;
     }
 
-    public void setDuration_in_minutes(int duration_in_minutes) {
+    public void setDuration_in_minutes(long duration_in_minutes) {
         this.duration_in_minutes = duration_in_minutes;
     }
 

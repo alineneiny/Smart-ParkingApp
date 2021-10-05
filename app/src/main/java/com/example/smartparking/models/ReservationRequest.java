@@ -6,7 +6,7 @@ public class ReservationRequest {
 
     private int user;
     private String plate_No;
-    private int duration_in_minutes;
+    private long duration_in_minutes;
     private int parking_block;
     private int amount;
     private String Entry_time;
@@ -35,7 +35,7 @@ public class ReservationRequest {
         return Exit_time;
     }
 
-    public int getDuration_in_minutes() {
+    public long getDuration_in_minutes() {
         return duration_in_minutes;
     }
 
