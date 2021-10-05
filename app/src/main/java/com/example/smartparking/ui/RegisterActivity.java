@@ -1,5 +1,6 @@
 package com.example.smartparking.ui;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 
@@ -12,6 +13,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @BindView(R.id.createUserButton) Button mCreateUserButton;
     @BindView(R.id.username) EditText username;
     @BindView(R.id.lname) EditText lname;
+    @BindView(R.id.spinner) Spinner spinner;
     @BindView(R.id.fname) EditText fname;
     @BindView(R.id.email) EditText email;
     @BindView(R.id.passwordEditText) EditText mPasswordEditText;
@@ -40,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @BindView(R.id.linearLayout)
     LinearLayout linearLayout;
     Animation topAnim, bottomAnim;
+    private ProgressDialog mAuthProgressDialog;
     SharedPreferenceManager sharedPreferenceManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         bottomAnim= AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
         linearLayout.setAnimation(bottomAnim);
         sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
+        createAuthProgressDialog();
     }
 
     @Override
@@ -67,6 +72,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             saveRegister(addUser());
         }
     }
+    private void createAuthProgressDialog() {
+        mAuthProgressDialog = new ProgressDialog(this);
+        mAuthProgressDialog.setTitle("Loading...");
+        mAuthProgressDialog.setMessage("Please wait while signing up......");
+        mAuthProgressDialog.setCancelable(true);
+    }
     public RegisterRequest addUser(){
         RegisterRequest registerRequest = new RegisterRequest();
         registerRequest.setUsername(username.getText().toString());
@@ -79,27 +90,29 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void saveRegister(RegisterRequest registerRequest){
-
+        mAuthProgressDialog.show();
         Call<RegisterResponse> registerResponseCall = ApiClient.getRegisterService().saveRegister(registerRequest);
         registerResponseCall.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                 RegisterResponse registerResponse = response.body();
                 if (response.isSuccessful()){
+                    mAuthProgressDialog.dismiss();
                     sharedPreferenceManager.saveUser(registerResponse.getUser());
-                    Toast.makeText(RegisterActivity.this, "Register successful", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, "Welcome...", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(RegisterActivity.this, UserProfile.class);
                     intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
                 }else{
+                    mAuthProgressDialog.dismiss();
                     Toast.makeText(RegisterActivity.this, response.message(), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
-
+                mAuthProgressDialog.dismiss();
                 Toast.makeText(RegisterActivity.this, "Register unsuccessful"+ t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
         });

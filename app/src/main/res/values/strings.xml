@@ -9,4 +9,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="your_car_s_plate_number">Your car\'s plate number</string>
     <string name="title_activity_maps">Map</string>
+    <string name="driver">driver</string>
+
+
+    <string-array name="spinnerlist">
+        <item>@string/driver</item>
+    </string-array>
 </resources>
