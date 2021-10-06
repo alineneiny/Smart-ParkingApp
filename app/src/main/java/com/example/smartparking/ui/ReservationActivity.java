@@ -196,8 +196,7 @@ public class ReservationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(awesomeValidation.validate() ) {
-//                    PayBooking();
-                    saveReservation(addReservation());
+                    PayBooking();
                 }
             }
         });

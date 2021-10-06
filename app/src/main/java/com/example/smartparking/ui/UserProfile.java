@@ -12,12 +12,14 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.smartparking.R;
 import com.example.smartparking.services.ApiClient;
 import com.example.smartparking.storage.SharedPreferenceManager;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.card.MaterialCardView;
 import com.google.gson.JsonObject;
 
@@ -102,6 +104,17 @@ public class UserProfile extends FragmentActivity implements View.OnClickListene
         if (v == contactus) {
                 Intent intent = new Intent(UserProfile.this, ContactUsActivity.class);
                 startActivity(intent);
+        }
+        if (v == releaseCar) {
+          final  BottomSheetDialog bottomSheetDialog=new BottomSheetDialog(
+                    UserProfile.this,R.style.BottomSheetDialogTheme
+            );
+          View bottomSheetView =LayoutInflater.from(getApplicationContext())
+                  .inflate(
+                          R.layout.layout_bottom_sheet, (LinearLayout)findViewById(R.id.bottomSheetContainer)
+                  );
+          bottomSheetDialog.setContentView(bottomSheetView);
+          bottomSheetDialog.show();
         }
         if (v == receipts) {
             Intent intent = new Intent(UserProfile.this, Receipt.class);

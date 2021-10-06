@@ -2,6 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:id="@+id/bottomSheetContainer"
+    android:background="@drawable/bottom_sheet_bg"
+    android:layout_height="wrap_content">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Search a Car"
+        android:padding="15dp"
+        android:textColor="@color/rave_light_grey"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="match_parent"
+            android:id="@+id/searchBox"
+            android:hint="RAD123F"
+            android:padding="15dp"
+            android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/searchBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_bg"
+        android:padding="5dp"
+        android:text="Search"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+</LinearLayout>
 </LinearLayout>
