@@ -9,14 +9,14 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="54dp"
-        android:src="@drawable/download"
+        android:src="@drawable/parking"
         android:scaleType="centerInside"
-        android:background="@drawable/image_border" />
+        />
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"

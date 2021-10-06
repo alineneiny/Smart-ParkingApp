@@ -152,10 +152,13 @@ public class UserProfile extends FragmentActivity implements View.OnClickListene
                 TextView location = convertView.findViewById(R.id.location);
                 TextView slot = convertView.findViewById(R.id.slot);
                 Button button2 = convertView.findViewById(R.id.button2);
+                int ID=blockResponseList.get(position).getId();
                 button2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(UserProfile.this, ReservationActivity.class));
+                        Intent intent=new Intent(UserProfile.this, ReservationActivity.class);
+                        intent.putExtra("parkID",String.valueOf(ID));
+                        startActivity(intent);
                     }
                 });
                 JsonObject loc = blockResponseList.get(position).getLocation();

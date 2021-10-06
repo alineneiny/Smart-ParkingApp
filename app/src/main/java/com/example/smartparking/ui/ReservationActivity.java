@@ -1,6 +1,8 @@
 package com.example.smartparking.ui;
 
-import static java.lang.String.*;
+import static java.lang.Integer.parseInt;
+
+import java.time.*;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -34,18 +36,14 @@ import com.flutterwave.raveandroid.RavePayActivity;
 import com.flutterwave.raveandroid.RaveUiManager;
 import com.flutterwave.raveandroid.rave_java_commons.RaveConstants;
 
-import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class ReservationActivity extends AppCompatActivity {
     SharedPreferenceManager sharedPreferenceManager;
     @BindView(R.id.editTextEntryDate) EditText entryDate;
@@ -53,11 +51,9 @@ public class ReservationActivity extends AppCompatActivity {
     @BindView(R.id.editTextEntryTime) EditText entryTime;
     @BindView(R.id.editPlateNo) EditText plateNo;
     @BindView(R.id.reservationButton) Button reservationButton;
-    Date date1;
-    Date date2;
     private int mHour, mMinute,mSecond,mYear, mMonth, mDay;
     String format;
-    long dMinutes;
+    String blockID;
     @BindView(R.id.image3)
     ImageView image;
     @BindView(R.id.linearLayout)
@@ -80,6 +76,9 @@ public class ReservationActivity extends AppCompatActivity {
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
+        Intent intent = getIntent();
+        blockID=intent.getStringExtra("parkID");
+        Toast.makeText(ReservationActivity.this, blockID, Toast.LENGTH_LONG).show();
         //validation style
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         // add validations
@@ -106,6 +105,7 @@ public class ReservationActivity extends AppCompatActivity {
         });
 
         entryTime.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 final Calendar c = Calendar.getInstance();
@@ -197,7 +197,8 @@ public class ReservationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(awesomeValidation.validate() ) {
-                    PayBooking();
+//                    PayBooking();
+                    saveReservation(addReservation());
                 }
             }
         });
@@ -206,21 +207,10 @@ public class ReservationActivity extends AppCompatActivity {
     }
 
     public ReservationRequest addReservation(){
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-        try {
-            date1 = format.parse(valueOf(entryTime));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        try {
-            date2 = format.parse(valueOf(exitTime));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        dMinutes= date1.getTime() - date2.getTime();
+
         ReservationRequest reservationRequest = new ReservationRequest();
         reservationRequest.setUser_id(sharedPreferenceManager.getUser().getId());
-        reservationRequest.setParking_block(1);
+        reservationRequest.setParking_block(Integer.parseInt(blockID));
         reservationRequest.setBooking_date(entryDate.getText().toString());
         reservationRequest.setEntry_time(entryTime.getText().toString());
         reservationRequest.setExit_time(exitTime.getText().toString());
@@ -236,13 +226,13 @@ public class ReservationActivity extends AppCompatActivity {
                 .setfName(sharedPreferenceManager.getUser().getLast_name())
                 .setlName(sharedPreferenceManager.getUser().getFirst_name())
                 .setNarration("parking")
-                .setPublicKey("FLWPUBK_TEST-ffca2fc845cb11d844177c7456441df5-X")
-                .setEncryptionKey("FLWSECK_TEST47ebc4968736")
+                .setPublicKey("FLWPUBK-318ac8043683c03f77d0df70f3f35bf4-X")
+                .setEncryptionKey("40dfdb7c44e2204c01276ccd")
                 .setTxRef(System.currentTimeMillis()+"ref")
                 .setPhoneNumber("+250781207615", true)
-                .acceptAccountPayments(false)
+                .acceptAccountPayments(true)
                 .acceptCardPayments(true)
-                .acceptMpesaPayments(false)
+                .acceptMpesaPayments(true)
                 .acceptAchPayments(false)
                 .acceptGHMobileMoneyPayments(false)
                 .acceptUgMobileMoneyPayments(false)
@@ -250,10 +240,10 @@ public class ReservationActivity extends AppCompatActivity {
                 .acceptRwfMobileMoneyPayments(true)
                 .acceptSaBankPayments(false)
                 .acceptUkPayments(false)
-                .acceptBankTransferPayments(false)
+                .acceptBankTransferPayments(true)
                 .acceptUssdPayments(false)
                 .acceptBarterPayments(false)
-                .acceptFrancMobileMoneyPayments(false)
+                .acceptFrancMobileMoneyPayments(true)
                 .allowSaveCardFeature(false)
                 .onStagingEnv(false)
                 .withTheme(R.style.MyCustomTheme)

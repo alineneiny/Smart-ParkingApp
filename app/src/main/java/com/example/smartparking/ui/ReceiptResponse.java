@@ -1,6 +1,7 @@
 package com.example.smartparking.ui;
 
 public class ReceiptResponse {
+    private int id;
     private int user;
     private String plate_No;
     private int duration_in_minutes;
@@ -19,6 +20,13 @@ public class ReceiptResponse {
 
     public void setUser(int user) {
         this.user = user;
+    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPlate_No() {

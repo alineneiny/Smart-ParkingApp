@@ -4,10 +4,10 @@ import com.google.gson.JsonObject;
 
 
 public class BlockResponse {
+    private  int id;
     private String block_code;
-   private JsonObject location;
-  private  String is_block_full;
-  private String is_accessible;
+    private JsonObject location;
+    private String is_accessible;
     private String number_of_slots;
 
     public BlockResponse() {
@@ -29,12 +29,12 @@ public class BlockResponse {
         this.location = location;
     }
 
-    public String getIs_block_full() {
-        return is_block_full;
+    public int getId() {
+        return id;
     }
 
-    public void setIs_block_full(String is_block_full) {
-        this.is_block_full = is_block_full;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getIs_accessible() {

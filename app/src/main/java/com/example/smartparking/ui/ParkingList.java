@@ -109,7 +109,9 @@ public class ParkingList extends FragmentActivity {
                 button2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(ParkingList.this, ReservationActivity.class));
+                        Intent intent=new Intent(ParkingList.this, ReservationActivity.class);
+                        intent.putExtra("parkID",blockResponseList.get(position).getId());
+                        startActivity(intent);
                     }
                 });
                 JsonObject loc= blockResponseList.get(position).getLocation();
