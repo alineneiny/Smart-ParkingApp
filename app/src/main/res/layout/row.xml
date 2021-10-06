@@ -53,6 +53,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_below="@id/location"
             android:background="@drawable/button_bg"
             android:text="Book Now"
             android:textColor="@color/white"

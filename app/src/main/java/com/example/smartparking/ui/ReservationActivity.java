@@ -78,7 +78,6 @@ public class ReservationActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         blockID=intent.getStringExtra("parkID");
-        Toast.makeText(ReservationActivity.this, blockID, Toast.LENGTH_LONG).show();
         //validation style
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         // add validations

@@ -48,8 +48,6 @@ public class ParkingList extends FragmentActivity {
             @Override
             public void onResponse(Call<List<BlockResponse>> call, Response<List<BlockResponse>> response) {
                 if(response.isSuccessful()){
-                    String message ="Request successful";
-                    Toast.makeText(ParkingList.this,message,Toast.LENGTH_LONG).show();
                     blockRespons =response.body();
                     CustomAdapter customAdapter = new CustomAdapter(blockRespons, ParkingList.this);
                     gridView.setAdapter(customAdapter);
@@ -110,7 +108,7 @@ public class ParkingList extends FragmentActivity {
                     @Override
                     public void onClick(View v) {
                         Intent intent=new Intent(ParkingList.this, ReservationActivity.class);
-                        intent.putExtra("parkID",blockResponseList.get(position).getId());
+                        intent.putExtra("parkID",String.valueOf(blockResponseList.get(position).getId()));
                         startActivity(intent);
                     }
                 });
