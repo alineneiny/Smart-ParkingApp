@@ -15,7 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.smartparking.R;
+import com.example.smartparking.models.LoginRequest;
+import com.example.smartparking.models.ReceiptRequest;
 import com.example.smartparking.services.ApiClient;
+import com.example.smartparking.storage.SharedPreferenceManager;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
@@ -31,20 +34,26 @@ public class Receipt extends AppCompatActivity {
 
     @BindView(R.id.receiptView)
     GridView receiptView;
+    SharedPreferenceManager sharedPreferenceManager;
 
     private List<ReceiptResponse> receiptResponse = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPreferenceManager = new SharedPreferenceManager(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receipt);
 
         ButterKnife.bind(this);
 
-        getAllReceipts();
+        getAllReceipts(userReceipt());
     }
-
-    public void getAllReceipts() {
-        Call<List<ReceiptResponse>> receiptsResponse = ApiClient.getReservationService().getAllReceipts();
+    public ReceiptRequest userReceipt(){
+        ReceiptRequest receiptRequest = new ReceiptRequest();
+        receiptRequest.setId(sharedPreferenceManager.getUser().getId());
+        return receiptRequest;
+    }
+    public void getAllReceipts(ReceiptRequest receiptRequest) {
+        Call<List<ReceiptResponse>> receiptsResponse = ApiClient.getReservationService().getAllReceipts(receiptRequest);
         receiptsResponse.enqueue(new Callback<List<ReceiptResponse>>() {
             @Override
             public void onResponse(Call<List<ReceiptResponse>> call, Response<List<ReceiptResponse>> response) {

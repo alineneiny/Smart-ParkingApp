@@ -2,8 +2,6 @@ package com.example.smartparking.ui;
 
 import static java.lang.Integer.parseInt;
 
-import java.time.*;
-
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -17,7 +15,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -36,7 +33,12 @@ import com.flutterwave.raveandroid.RavePayActivity;
 import com.flutterwave.raveandroid.RaveUiManager;
 import com.flutterwave.raveandroid.rave_java_commons.RaveConstants;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -117,32 +119,10 @@ public class ReservationActivity extends AppCompatActivity {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay,
                                                   int minute) {
-                                if (hourOfDay == 0) {
-
-                                    hourOfDay += 12;
-
-                                    format = "AM";
-                                }
-                                else if (hourOfDay == 12) {
-
-                                    format = "PM";
-
-                                }
-                                else if (hourOfDay > 12) {
-
-                                    hourOfDay -= 12;
-
-                                    format = "PM";
-
-                                }
-                                else {
-
-                                    format = "AM";
-                                }
-                                    entryTime.setText(hourOfDay + ":" + minute + ":" + mSecond);
+                                    entryTime.setText(hourOfDay + ":" + minute);
 
                             }
-                        }, mHour, mMinute, false);
+                        }, mHour, mMinute, true);
                 timePickerDialog.show();
             }
         });
@@ -160,33 +140,9 @@ public class ReservationActivity extends AppCompatActivity {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay,
                                                   int minute) {
-
-                                if (hourOfDay == 0) {
-
-                                    hourOfDay += 12;
-
-                                    format = "AM";
-                                }
-                                else if (hourOfDay == 12) {
-
-                                    format = "PM";
-
-                                }
-                                else if (hourOfDay > 12) {
-
-                                    hourOfDay -= 12;
-
-                                    format = "PM";
-
-                                }
-                                else {
-
-                                    format = "AM";
-                                }
-
-                                exitTime.setText(hourOfDay + ":" + minute + ":" + mSecond);
+                                exitTime.setText(hourOfDay + ":" + minute);
                             }
-                        }, mHour, mMinute, false);
+                        }, mHour, mMinute, true);
                 timePickerDialog.show();
             }
         });
@@ -196,29 +152,51 @@ public class ReservationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(awesomeValidation.validate() ) {
-                    PayBooking();
+                    String dateStart = entryDate.getText().toString() +" "+ entryTime.getText().toString();
+                    String dateStop = entryDate.getText().toString() +" "+ exitTime.getText().toString();
+                    SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm");
+                    try {
+                        Date d1 = format.parse(dateStart);
+                        Date d2 = format.parse(dateStop);
+                        long diff = d2.getTime() - d1.getTime();
+                        long minutes = TimeUnit.MILLISECONDS.toMinutes(diff);
+                        int amountToPay= (int) ((minutes/60)*100);
+                        PayBooking(amountToPay);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
-
-
     }
 
     public ReservationRequest addReservation(){
-
-        ReservationRequest reservationRequest = new ReservationRequest();
-        reservationRequest.setUser_id(sharedPreferenceManager.getUser().getId());
-        reservationRequest.setParking_block(Integer.parseInt(blockID));
-        reservationRequest.setBooking_date(entryDate.getText().toString());
-        reservationRequest.setEntry_time(entryTime.getText().toString());
-        reservationRequest.setExit_time(exitTime.getText().toString());
-        reservationRequest.setDuration_in_minutes(60);
-        reservationRequest.setAmount(100);
-        reservationRequest.setPlate_No(plateNo.getText().toString());
-        return reservationRequest;
+        String dateStart = entryDate.getText().toString() +" "+ entryTime.getText().toString();
+        String dateStop = entryDate.getText().toString() +" "+ exitTime.getText().toString();
+        SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm");
+        try {
+            Date d1 = format.parse(dateStart);
+            Date d2 = format.parse(dateStop);
+            long diff = d2.getTime() - d1.getTime();
+            long minutes = TimeUnit.MILLISECONDS.toMinutes(diff);
+            int amountToPay= (int) ((minutes/60)*100);
+            ReservationRequest reservationRequest = new ReservationRequest();
+            reservationRequest.setUser_id(sharedPreferenceManager.getUser().getId());
+            reservationRequest.setParking_block(Integer.parseInt(blockID));
+            reservationRequest.setBooking_date(entryDate.getText().toString());
+            reservationRequest.setEntry_time(entryTime.getText().toString());
+            reservationRequest.setExit_time(exitTime.getText().toString());
+            reservationRequest.setDuration_in_minutes((int) minutes);
+            reservationRequest.setAmount(amountToPay);
+            reservationRequest.setPlate_No(plateNo.getText().toString());
+            return reservationRequest;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
-    public void PayBooking(){
-        new RaveUiManager(ReservationActivity.this).setAmount(100)
+    public void PayBooking(int amountToPay){
+        new RaveUiManager(ReservationActivity.this).setAmount(amountToPay)
                 .setCurrency("RWF")
                 .setEmail(sharedPreferenceManager.getUser().getEmail())
                 .setfName(sharedPreferenceManager.getUser().getLast_name())
@@ -227,7 +205,7 @@ public class ReservationActivity extends AppCompatActivity {
                 .setPublicKey("FLWPUBK-318ac8043683c03f77d0df70f3f35bf4-X")
                 .setEncryptionKey("40dfdb7c44e2204c01276ccd")
                 .setTxRef(System.currentTimeMillis()+"ref")
-                .setPhoneNumber("+250781207615", true)
+                .setPhoneNumber("+250781459388", true)
                 .acceptAccountPayments(true)
                 .acceptCardPayments(true)
                 .acceptMpesaPayments(true)

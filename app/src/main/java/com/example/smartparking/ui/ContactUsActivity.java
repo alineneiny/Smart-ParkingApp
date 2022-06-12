@@ -27,7 +27,7 @@ public class ContactUsActivity extends AppCompatActivity {
         sms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse("smsto:0781207615");
+                Uri uri = Uri.parse("smsto:0781459388");
                 Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
                 intent.putExtra("sms_body", "");
                 startActivity(intent);
@@ -36,7 +36,7 @@ public class ContactUsActivity extends AppCompatActivity {
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto","ndabaramiye15@gmail.com", null));
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto","alinuwaseneiny@gmail.com", null));
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
                 emailIntent.putExtra(Intent.EXTRA_TEXT, "Body");
                 startActivity(Intent.createChooser(emailIntent, "Send email..."));
@@ -45,7 +45,7 @@ public class ContactUsActivity extends AppCompatActivity {
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "+250781207615"));
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "+250781459388"));
                 if (ContextCompat.checkSelfPermission(ContactUsActivity.this,
                         Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(ContactUsActivity.this, new String[]{Manifest.permission.CALL_PHONE},1);
